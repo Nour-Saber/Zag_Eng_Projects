@@ -25,16 +25,3 @@ export const addNewBookController = async (req,res)=>{
     }
 
 }
-export const getOneBooksController = async (req,res)=>{
-    try{
-      const {id} = req.params;
-      const book = await Book.findById(id);
-      res.status(200).json({
-        "book":book
-      })
-
-    }
-    catch(err){
-      res.send("error");
-    }
-}
