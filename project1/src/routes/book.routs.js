@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Router } from "express";
 import {
   addNewBookController,
@@ -20,14 +19,6 @@ router.put("/:id", updateBookController);
 router.post("/", addNewBookController);
 
 export { router as bookRouters };
-=======
-import {Router} from 'express';
-import {addNewBookController } from '../controllers/book.controller.js'
-
-const router = Router();
-
-router.post("/",addNewBookController);
 
 
-export {router as bookRouters};
->>>>>>> 9ace613b4512253d19d3995d7eda0ce019cb9151
+
