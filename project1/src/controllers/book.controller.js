@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Book } from "../models/book.model.js";
 
+<<<<<<< HEAD
 export const addNewBookController = async (req, res) => {
   try {
     const book = req.body;
@@ -83,3 +84,12 @@ export const getAllBooksController = async (req, res) => {
     res.status(400).send(err.message);
   }
 };
+=======
+    }
+    catch(err){
+
+      res.status(400).send(err.message);
+    }
+
+}
+>>>>>>> 9ace613b4512253d19d3995d7eda0ce019cb9151
