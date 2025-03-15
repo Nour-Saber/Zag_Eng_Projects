@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Book } from "../models/book.model.js";
+import { NotFoundError, BadRequestError } from "../errors/Errors.js";
 
-<<<<<<< HEAD
 export const addNewBookController = async (req, res) => {
   try {
     const book = req.body;
@@ -29,20 +29,16 @@ export const getOneBooksController = async (req, res) => {
         Book: book,
       });
     } else {
-      const error = new Error("Book is not found!");
-      throw error;
+      throw new NotFoundError("Book is not found!");
     }
   } catch (err) {
-    res.status(400).send(err.message);
+    res.status(err.statusCode).send(err.message);
   }
 };
 export const DeleteONeBookController = async (req, res) => {
   try {
     const { id } = req.params;
-    //const id = req.params.id;
     const book = await Book.findByIdAndDelete(id);
-    // const book = await Book.findById(id);
-    // await Book.deleteOne(book);
     if (book) {
       res.status(200).send("Book is deleted !");
     } else {
@@ -84,12 +80,3 @@ export const getAllBooksController = async (req, res) => {
     res.status(400).send(err.message);
   }
 };
-=======
-    }
-    catch(err){
-
-      res.status(400).send(err.message);
-    }
-
-}
->>>>>>> 9ace613b4512253d19d3995d7eda0ce019cb9151

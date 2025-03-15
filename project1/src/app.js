@@ -6,6 +6,8 @@ import morgan from "morgan";
 
 import { logger } from "./middlewares/custome.middleware.js";
 
+import { authRouter } from "./routes/auth.route.js";
+
 const app = express();
 app.listen(process.env.PORT, () => {
   console.log(`Listening ON PORT ${process.env.PORT}`);
@@ -25,3 +27,4 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(logger);
 app.use("/books", bookRouters);
+app.use("/auth", authRouter);
