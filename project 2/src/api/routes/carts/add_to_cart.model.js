@@ -7,8 +7,9 @@ import { Cart } from "../../models/carts/cart.model.js";
 const router = Router();
 const AddToCart = async (req, res) => {
   try {
-    const { productId, quantity, user_id } = req.body;
-    const cart = await Cart.findOne({ user_id: user_id, is_deleted: false });
+    const { productId, quantity } = req.body;
+    const userId = req.user._id;
+    const cart = await Cart.findOne({ user_id: userId, is_deleted: false });
     const product = await Product.findOne({
       _id: productId,
       is_deleted: false,
@@ -18,7 +19,7 @@ const AddToCart = async (req, res) => {
 
     if (!cart) {
       const newCart = await Cart({
-        user_id: user_id,
+        user_id: userId,
         items: [
           {
             product: productId,

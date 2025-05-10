@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Category } from "../../models/categories/category.model.js";
 import { NotFoundError } from "../../../core/errors/Errors.js";
+import { authorize } from "../../../core/middlewares/authorizeUsers.middleware.js";
 
 const router = Router();
 
@@ -19,5 +20,5 @@ const UpdateCategory = async (req, res) => {
     res.status(err.status_code).json({ message: err.message });
   }
 };
-router.put("/:id", UpdateCategory);
+router.put("/:id", authorize(["admin","editor"]),UpdateCategory);
 export { router as UpdateCategoryRouter };

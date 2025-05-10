@@ -19,5 +19,5 @@ const DeleteFromCart = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
-router.use("/:id", DeleteFromCart);
+router.delete("/:id", DeleteFromCart);
 export { router as DeleteFromCartRouter };

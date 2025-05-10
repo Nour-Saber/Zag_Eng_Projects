@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Product } from "../../models/products/products.model.js";
 import { NotFoundError } from "../../../core/errors/Errors.js";
+import { authorize } from "../../../core/middlewares/authorizeUsers.middleware.js";
 
 const router = Router();
 
@@ -23,5 +24,5 @@ const UpdateProduct = async (req, res) => {
     });
   }
 };
-router.put("/:id", UpdateProduct);
+router.put("/:id", authorize(["admin","editor"]),UpdateProduct);
 export { router as UpdateProductRouter };
