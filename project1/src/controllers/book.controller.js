@@ -2,10 +2,7 @@ import mongoose from "mongoose";
 import { Book } from "../models/book.model.js";
 import { NotFoundError, BadRequestError } from "../errors/Errors.js";
 
-<<<<<<< HEAD
-=======
 
->>>>>>> c5f25293fa6d9b02ec3072c7936fe855ac2a89af
 export const addNewBookController = async (req, res) => {
   try {
     const book = req.body;
@@ -84,8 +81,7 @@ export const getAllBooksController = async (req, res) => {
     res.status(400).send(err.message);
   }
 };
-<<<<<<< HEAD
-=======
+
 
     }
     catch(err){
@@ -95,4 +91,3 @@ export const getAllBooksController = async (req, res) => {
 
 }
 
->>>>>>> c5f25293fa6d9b02ec3072c7936fe855ac2a89af
