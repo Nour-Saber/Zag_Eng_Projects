@@ -7,7 +7,7 @@ const GetAllProducts = async (req, res) => {
   try {
     const query = buildQuery(req);
     const products = await Product.find(query);
-    if (!products) throw new NotFoundError("Products not found!");
+    // if (!products.length) throw new NotFoundError("Products not found!");
     res
       .status(200)
       .json({ message: "products found successfully!", data: products });
