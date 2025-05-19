@@ -1,13 +1,13 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import morgan from 'morgan'
+import express from "express";
+import mongoose from "mongoose";
+import morgan from "morgan";
 
-import 'dotenv/config'
+import "dotenv/config";
 const app = express();
 
-app.listen( process.env.PORT,()=>
-    {console.log(`Listen on port ${ process.env.PORT}`)}
-)
+app.listen(process.env.PORT, () => {
+  console.log(`Listen on port ${process.env.PORT}`);
+});
 const connectToDB = async () => {
   try {
     const uri = process.env.MONGO_URI;
