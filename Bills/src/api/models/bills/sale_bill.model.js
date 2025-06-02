@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const salebillSchema = mongoose.Schema({
+const saleBillSchema = new mongoose.Schema({
   client: { type: mongoose.Types.ObjectId, ref: "Client", required: true },
   products: [
     {
-      name: { type: String, required: true },
-      price: { type: Number, required: true },
+      product:{type:mongoose.Types.ObjectId,ref:'Product'},
       description: { type: String, required: true },
       quantity: { type: Number, required: true },
     },
@@ -14,4 +13,4 @@ const salebillSchema = mongoose.Schema({
   date: { type: String, required: true },
   is_deleted: { type: Boolean, default: false },
 });
-export const SaleBill = mongoose.Model("salebill", salebillSchema);
+export const SaleBill = mongoose.model("saleBill", saleBillSchema);
