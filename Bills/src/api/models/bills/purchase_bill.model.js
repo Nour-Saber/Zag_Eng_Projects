@@ -4,7 +4,6 @@ const purchaseBillSchema = new mongoose.Schema({
   products: [
     {
       product:{type:mongoose.Types.ObjectId,ref:'Product'},
-      description: { type: String, required: true },
       quantity: { type: Number, required: true },
     },
   ],
