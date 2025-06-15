@@ -8,6 +8,8 @@ import { productRouter } from "./api/routes/products/index.js";
 import { ProviderRouter } from "./api/routes/provider/index.js";
 import { PurchaseBillsRouter } from "./api/routes/purchase_bills/index.js";
 import { SaleBillsRouter } from "./api/routes/sale_bills/index.js";
+import { CacheDrawerRouter } from "./api/routes/safe_and_cache/get_cache_drawer.route.js";
+import { SafeRouter } from "./api/routes/safe_and_cache/get_safe.route.js";
 const app = express();
 
 app.listen(process.env.PORT, () => {
@@ -29,4 +31,6 @@ app.use("/client", ClientRouter);
 app.use("/product", productRouter);
 app.use("/provider", ProviderRouter);
 app.use("/purchase_bill", PurchaseBillsRouter);
-app.use("/sale_bill",SaleBillsRouter)
+app.use("/sale_bill", SaleBillsRouter);
+app.use("/cache", CacheDrawerRouter);
+app.use("/safe", SafeRouter);

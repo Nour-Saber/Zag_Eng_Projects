@@ -7,6 +7,6 @@ const cache_drawer_transactionSchema = new mongoose.Schema({
   is_deleted: { type: Boolean, default: false },
 });
 export const CacheDrawerTransaction = mongoose.model(
-  "transaction",
+  "cache_drawer_transaction",
   cache_drawer_transactionSchema
 );

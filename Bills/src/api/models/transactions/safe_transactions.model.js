@@ -7,6 +7,6 @@ const safe_transactionSchema = new mongoose.Schema({
   is_deleted: { type: Boolean, default: false },
 });
 export const SafeTransaction = mongoose.model(
-  "transaction",
+  "safe_transaction",
   safe_transactionSchema
 );
