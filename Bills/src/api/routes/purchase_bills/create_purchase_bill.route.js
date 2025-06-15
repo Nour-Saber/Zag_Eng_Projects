@@ -16,6 +16,12 @@ const CreatePurchaseBill = async (req, res) => {
       bill: newPurchaseBill._id,
     });
     if (!newPurchaseBill) throw BadRequestError("Bill not Created !");
+    const safe = await Safe.findOne();
+    if(safe.balance>=total_cost)
+       safe.balance-=total_cost;
+    else
+       res.status(200).json({msg:"No enough credit!"});
+
     await newPurchaseBill.save();
     await newSafeTransaction.save();
     res.status(200).json({ data: newPurchaseBill });
