@@ -3,7 +3,9 @@ const purchaseBillSchema = new mongoose.Schema({
   provider: { type: mongoose.Types.ObjectId, ref: "Provider", required: true },
   products: [
     {
-      product:{type:mongoose.Types.ObjectId,ref:'Product'},
+      name:{type:String},
+      productId:{type:mongoose.Types.ObjectId,ref:'Product'},
+      description: { type: String },
       quantity: { type: Number, required: true },
     },
   ],

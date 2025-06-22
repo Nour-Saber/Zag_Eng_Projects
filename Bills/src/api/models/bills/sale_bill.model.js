@@ -4,7 +4,7 @@ const saleBillSchema = new mongoose.Schema({
   client: { type: mongoose.Types.ObjectId, ref: "Client", required: true },
   products: [
     {
-      product: { type: mongoose.Types.ObjectId, ref: "Product" },
+      productId: { type: mongoose.Types.ObjectId, ref: "Product" },
       quantity: { type: Number, required: true },
     },
   ],
