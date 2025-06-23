@@ -1,26 +1,32 @@
 import { Router } from "express";
 const router = Router();
 import { PurchaseBill } from "../../models/bills/purchase_bill.model.js";
-import { BadRequestError } from "../../../core/errors/errors.js";
+import { BadRequestError, NotFoundError } from "../../../core/errors/errors.js";
 import { SafeTransaction } from "../../models/transactions/safe_transactions.model.js";
 import { Safe } from "../../models/safe/safe.model.js";
 import { Product } from "../../models/product/product.model.js";
+import { Provider } from "../../models/provider/providers.model.js";
 const CreatePurchaseBill = async (req, res) => {
   try {
     const data = req.body;
     const { products, provider, date, total_cost } = data;
     const newPurchaseBill = await PurchaseBill({ ...data });
+
     await Promise.all(
       products.map(async (product) => {
-        const existing = await Product.findOne({
-          _id: product.productId,
-          is_deleted: false,
-        });
-        if (existing) {
-          existing.stock += product.quantity;
-          await existing.save();
+        if (product.productId) {
+          const existing = await Product.findOne({
+            _id: product.productId,
+            is_deleted: false,
+          });
+          if (existing) {
+            existing.stock += product.quantity;
+            await existing.save();
+          } else {
+            throw NotFoundError("Product not found!");
+          }
         } else {
-           await Product.create({
+          await Product.create({
             name: product.name,
             description: product.description,
             stock: product.quantity,
@@ -29,6 +35,8 @@ const CreatePurchaseBill = async (req, res) => {
         }
       })
     );
+
+    
     const newSafeTransaction = await SafeTransaction({
       provider,
       date,
